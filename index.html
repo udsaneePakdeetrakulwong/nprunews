@@ -1,212 +1,101 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suksawat News - ระบบแชร์ข่าวสาร</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Kanit) -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Kanit', sans-serif; }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#34204f">
+  <meta name="description" content="ข่าวสารและประกาศจาก อุษณีย์ ภักดีตระกูลวงศ์">
+  <title>Udsanee Pakdeetrakulwong | ข่าวสารและประกาศ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root { --ink:#292238; --purple:#34204f; --accent:#8b62ba; --cream:#faf7f1; --line:#e9e1ea; --muted:#736b7b; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Kanit,sans-serif; color:var(--ink); background:var(--cream); }
+    button,input,textarea { font:inherit; } button { cursor:pointer; } a { color:inherit; }
+    .container { width:min(1160px, calc(100% - 40px)); margin:auto; }
+    .site-header { background:#fff; border-bottom:1px solid var(--line); }
+    .header-inner { min-height:88px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .identity { display:flex; gap:13px; align-items:center; text-decoration:none; min-width:0; }
+    .monogram { background:var(--purple); color:#fff; width:49px; height:49px; border-radius:14px; display:grid; place-items:center; font-size:18px; font-weight:600; flex:none; }
+    .identity strong { display:block; font-size:18px; line-height:1.15; } .identity small { color:var(--muted); font-size:12px; }
+    .nav { display:flex; gap:8px; } .nav button { background:transparent; border:0; border-radius:25px; color:var(--muted); padding:9px 15px; white-space:nowrap; }
+    .nav button.active,.nav button:hover { background:#f0e9f5; color:var(--purple); }
+    .hero { background:var(--purple); color:#fff; position:relative; overflow:hidden; }
+    .hero:after { content:""; position:absolute; width:460px; height:460px; border:1px solid #ffffff35; border-radius:50%; right:-70px; top:-230px; box-shadow:0 0 0 80px #ffffff08,0 0 0 170px #ffffff08; pointer-events:none; }
+    .hero-inner { padding:70px 0 76px; position:relative; z-index:1; } .eyebrow { color:#dbc7ed; letter-spacing:.14em; font-size:13px; font-weight:600; }
+    h1,h2,h3,p { margin-top:0; } .hero h1 { font-size:clamp(34px,5vw,58px); line-height:1.18; margin:15px 0 16px; max-width:750px; }
+    .hero p { font-size:16px; color:#e0d3e8; max-width:610px; margin-bottom:26px; }
+    .hero-link { display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--purple); border-radius:12px; text-decoration:none; padding:11px 19px; font-weight:600; }
+    main { min-height:50vh; } .content { padding:54px 0 84px; }
+    .section-title { display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin-bottom:25px; }
+    .section-title .eyebrow { color:var(--accent); } .section-title h2 { font-size:30px; margin:5px 0 0; }
+    .section-title p { color:var(--muted); margin:3px 0 0; font-size:14px; }
+    .refresh { border:1px solid var(--line); border-radius:11px; background:#fff; padding:10px 14px; color:var(--purple); white-space:nowrap; }
+    .news-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+    .news-card { background:#fff; border:1px solid var(--line); border-radius:19px; overflow:hidden; display:flex; flex-direction:column; cursor:pointer; transition:transform .2s,box-shadow .2s; }
+    .news-card:hover { transform:translateY(-4px); box-shadow:0 18px 38px #34204f1b; }
+    .card-image { height:205px; background:#e9dff0; overflow:hidden; display:grid; place-items:center; }
+    .card-image img { width:100%; height:100%; object-fit:cover; } .image-placeholder { color:#a486b7; font-size:52px; }
+    .card-body { display:flex; flex:1; flex-direction:column; padding:22px; }
+    .card-tag { color:var(--accent); font-size:11px; letter-spacing:.1em; font-weight:600; }
+    .card-body h3 { margin:10px 0; font-size:20px; line-height:1.45; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .excerpt { color:var(--muted); font-size:14px; line-height:1.7; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    .card-meta { margin-top:auto; padding-top:12px; color:var(--muted); font-size:12px; display:flex; flex-wrap:wrap; gap:4px 15px; }
+    .read-more { color:var(--purple); border-top:1px solid var(--line); margin-top:17px; padding-top:14px; font-size:13px; font-weight:600; display:flex; justify-content:space-between; }
+    .state { text-align:center; padding:70px 20px; background:#fff; border:1px solid var(--line); border-radius:19px; color:var(--muted); }
+    .state i { display:block; font-size:35px; color:var(--accent); margin-bottom:12px; } .hidden { display:none !important; }
+    .form-wrap { max-width:720px; margin:auto; } .panel { background:#fff; border:1px solid var(--line); border-radius:20px; padding:clamp(20px,4vw,38px); box-shadow:0 14px 38px #34204f0b; }
+    .panel h2 { font-size:28px; margin-bottom:4px; } .panel-intro { color:var(--muted); margin-bottom:25px; }
+    .field { margin-bottom:17px; } .field label { display:block; font-size:14px; font-weight:600; margin-bottom:6px; }
+    .field input,.field textarea { display:block; width:100%; border:1px solid #d8cddd; border-radius:11px; padding:12px 14px; background:#fff; outline:none; color:var(--ink); }
+    .field input:focus,.field textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px #8b62ba24; }
+    .author-note { background:#f5f0f7; border-radius:10px; padding:11px 15px; font-size:13px; margin-bottom:18px; }
+    .primary { background:var(--purple); color:#fff; border:0; border-radius:11px; padding:12px 20px; font-weight:600; } .primary:hover { background:#543776; } .primary:disabled { opacity:.6; }
+    .submit { width:100%; } .footer { background:#271b38; color:#d8ccdf; padding:27px 0; font-size:13px; }
+    .footer-inner { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .modal { position:fixed; inset:0; background:#201529b8; z-index:50; display:flex; align-items:center; justify-content:center; padding:18px; }
+    .modal-panel { background:#fff; border-radius:20px; width:min(670px,100%); max-height:90vh; overflow:auto; box-shadow:0 24px 80px #14092066; }
+    .modal-top { display:flex; justify-content:space-between; gap:15px; align-items:start; padding:22px 25px; border-bottom:1px solid var(--line); }
+    .modal-top a { display:block; color:var(--accent); font-size:12px; overflow-wrap:anywhere; } .modal-top span { font-size:12px; color:var(--muted); }
+    .close { border:0; background:#f2edf5; border-radius:9px; width:34px; height:34px; flex:none; }
+    .modal-body { padding:24px 25px; } .modal-body img { display:block; width:100%; height:285px; object-fit:cover; border-radius:12px; margin-bottom:18px; } .modal-body img[hidden] { display:none; }
+    .modal-meta { font-size:12px; color:var(--muted); display:flex; gap:16px; flex-wrap:wrap; }
+    .modal-body h3 { font-size:25px; margin:14px 0; line-height:1.4; } .modal-body p { line-height:1.85; white-space:pre-line; color:#51495a; }
+    .modal-bottom { border-top:1px solid var(--line); padding:17px 25px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .modal-bottom a { text-decoration:none; } .modal-bottom button { border:0; background:none; color:var(--muted); }
+    @media(max-width:850px) { .news-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:620px) { .container { width:min(100% - 30px,1160px); } .header-inner { align-items:flex-start; flex-direction:column; padding:15px 0 13px; gap:9px; } .nav { width:100%; } .nav button { font-size:13px; padding:7px 11px; } .hero-inner { padding:52px 0 58px; } .content { padding:40px 0 60px; } .news-grid { grid-template-columns:1fr; } .section-title { align-items:flex-start; } .section-title h2 { font-size:25px; } .refresh { font-size:12px; } .card-image { height:210px; } }
+  </style>
 </head>
-<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
-
-    <!-- Header / Navbar -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <!-- Logo & Web Title -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="switchView('dashboard')">
-                    <div class="bg-blue-600 text-white p-2 rounded-xl shadow-md">
-                        <i class="fa-solid fa-newspaper text-xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg leading-tight text-slate-900">Suksawat News</h1>
-                        <p class="text-xs text-slate-500">ศูนย์รวมข่าวสารและบทความ</p>
-                    </div>
-                </div>
-
-                <!-- Navigation Tabs -->
-                <nav class="flex gap-2">
-                    <button id="nav-dashboard" onclick="switchView('dashboard')" 
-                        class="px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 bg-blue-50 text-blue-600">
-                        <i class="fa-solid fa-house mr-1"></i> Dashboard
-                    </button>
-                    <button id="nav-admin" onclick="switchView('admin')" 
-                        class="px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 text-slate-600 hover:bg-slate-100">
-                        <i class="fa-solid fa-pen-to-square mr-1"></i> โพสต์ข่าว (Admin)
-                    </button>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-
-        <!-- ================= VIEW 1: DASHBOARD ================= -->
-        <section id="view-dashboard" class="space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900">ข่าวสารล่าสุด</h2>
-                    <p class="text-sm text-slate-500">ติดตามข่าวสารอัปเดตใหม่ล่าสุดประจำวัน</p>
-                </div>
-                <button onclick="fetchNews()" class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition">
-                    <i class="fa-solid fa-rotate-right mr-1.5" id="refresh-icon"></i> รีเฟรชข่าวสาร
-                </button>
-            </div>
-
-            <!-- Loading State -->
-            <div id="dashboard-loading" class="text-center py-20">
-                <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-600 mb-3"></i>
-                <p class="text-slate-500">กำลังโหลดข่าวสาร...</p>
-            </div>
-
-            <!-- Empty State -->
-            <div id="dashboard-empty" class="hidden text-center py-20 bg-white rounded-2xl shadow-sm border border-slate-200">
-                <i class="fa-regular fa-newspaper text-5xl text-slate-300 mb-3"></i>
-                <h3 class="text-lg font-medium text-slate-700">ยังไม่มีข่าวสารในขณะนี้</h3>
-                <p class="text-sm text-slate-400">กรุณาเพิ่มข่าวใหม่จากหน้าผู้ดูแลระบบ</p>
-            </div>
-
-            <!-- News Grid -->
-            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Cards will be dynamically inserted here -->
-            </div>
-        </section>
-
-        <!-- ================= VIEW 2: ADMIN POST FORM ================= -->
-        <section id="view-admin" class="hidden max-w-2xl mx-auto">
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
-                <div class="border-b border-slate-100 pb-4 mb-6">
-                    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-plus-circle text-blue-600"></i> โพสต์ข่าวสารใหม่
-                    </h2>
-                    <p class="text-xs text-slate-500 mt-1">กรอกข้อมูลด้านล่างเพื่อเพิ่มข่าวใหม่ลงในระบบ</p>
-                </div>
-
-                <form id="news-form" onsubmit="submitNews(event)" class="space-y-5">
-                    <!-- Title -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">หัวข้อข่าว <span class="text-red-500">*</span></label>
-                        <input type="text" id="input-title" required placeholder="ใส่หัวข้อข่าวที่น่าสนใจ..." 
-                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm">
-                    </div>
-
-                    <!-- Image URL -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">URL รูปภาพประกอบ <span class="text-red-500">*</span></label>
-                        <input type="url" id="input-image" required placeholder="https://example.com/image.jpg" 
-                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm">
-                    </div>
-
-                    <!-- Detail -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">รายละเอียดข่าว <span class="text-red-500">*</span></label>
-                        <textarea id="input-detail" rows="5" required placeholder="ระบุเนื้อหาและรายละเอียดของข่าวสาร..." 
-                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm"></textarea>
-                    </div>
-
-                    <!-- Source Link -->
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">ลิงก์ข่าวต้นฉบับ <span class="text-red-500">*</span></label>
-                        <input type="url" id="input-source" required placeholder="https://news-source.com/article/123" 
-                            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition text-sm">
-                    </div>
-
-                    <!-- Author Info (Fixed) -->
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex items-center justify-between text-xs text-slate-600">
-                        <span>ผู้โพสต์ระบบ: <strong>Suksawat Saelim</strong></span>
-                        <i class="fa-solid fa-user-check text-blue-500"></i>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" id="btn-submit" 
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-xl transition shadow-md shadow-blue-200 flex items-center justify-center gap-2">
-                        <span>บันทึกข่าวสาร</span>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-  
-    <!-- Modal: News Full Detail -->
-    <div id="news-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl transform transition-all">
-            
-            <!-- Modal Header -->
-            <div class="p-4 border-b border-slate-100 flex justify-between items-start bg-slate-50/50">
-                <div class="flex flex-col gap-1.5 max-w-[85%]">
-                    <span class="text-xs font-semibold px-2.5 py-1 bg-blue-100 text-blue-700 rounded-full w-fit">ข่าวสาร</span>
-                    
-                    <!-- เปลี่ยน div เป็น a และเปลี่ยน ID ไม่ให้ซ้ำ -->
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-1 text-xs">
-                        <a id="modal-source-header" href="#" target="_blank" rel="noopener noreferrer" 
-                            class="inline-flex items-center gap-1.5 text-blue-600 hover:text-blue-800 font-medium hover:underline w-fit">
-                            <i class="fa-solid fa-link"></i>
-                            <span>ลิงก์ข่าวต้นฉบับ:</span>
-                        </a>
-                        <a id="modal-source-url" href="#" target="_blank" rel="noopener noreferrer" 
-                            class="text-slate-500 hover:text-blue-600 underline break-all truncate max-w-full">
-                        </a>
-                    </div>
-                </div>
-
-                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-lg hover:bg-slate-200/50 transition">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <!-- Modal Body -->
-            <div class="p-6 overflow-y-auto space-y-4">
-                <img id="modal-image" src="" alt="" class="w-full h-64 object-cover rounded-xl shadow-sm">
-                
-                <div class="flex items-center gap-4 text-xs text-slate-500">
-                    <span><i class="fa-solid fa-user mr-1 text-blue-500"></i> <span id="modal-author"></span></span>
-                    <span><i class="fa-regular fa-clock mr-1 text-slate-400"></i> <span id="modal-time"></span></span>
-                </div>
-
-                <h3 id="modal-title" class="text-xl font-bold text-slate-900 leading-snug"></h3>
-                <p id="modal-detail" class="text-slate-600 text-sm leading-relaxed whitespace-pre-line"></p>
-            </div>
-
-            <!-- Modal Footer (เปลี่ยน ID ปุ่มเป็น modal-source-btn) -->
-            <div class="p-4 border-t border-slate-100 bg-slate-50 flex justify-between items-center">
-                <a id="modal-source-btn" href="#" target="_blank" rel="noopener noreferrer" 
-                    class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition shadow-sm">
-                    <span>อ่านข่าวต้นฉบับ</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                </a>
-                <button onclick="closeModal()" class="px-4 py-2 text-sm text-slate-600 hover:bg-slate-200/60 rounded-xl transition">
-                    ปิดหน้าต่าง
-                </button>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- JavaScript Logic -->
-    <script>
-        // =========================================================
+<body>
+  <header class="site-header"><div class="container header-inner">
+    <a class="identity" href="#top" onclick="switchView('dashboard')"><span class="monogram">UP</span><span><strong>Udsanee Pakdeetrakulwong</strong><small>ข่าวสารและประกาศ • อุษณีย์ ภักดีตระกูลวงศ์</small></span></a>
+    <nav class="nav" aria-label="เมนูหลัก"><button type="button" id="nav-dashboard" class="active" onclick="switchView('dashboard')"><i class="fa-solid fa-newspaper"></i> ข่าวสาร</button><button type="button" id="nav-admin" onclick="switchView('admin')"><i class="fa-solid fa-pen-to-square"></i> โพสต์ข่าว (Admin)</button></nav>
+  </div></header>
+  <section class="hero" id="top"><div class="container hero-inner"><span class="eyebrow">UPDATES & ANNOUNCEMENTS</span><h1>ข่าวสารและประกาศ<br>จากอาจารย์อุษณีย์</h1><p>ติดตามข้อมูล กิจกรรม และประกาศที่น่าสนใจได้ที่นี่</p><a class="hero-link" href="#news">ดูข่าวสารล่าสุด <i class="fa-solid fa-arrow-down"></i></a></div></section>
+  <main class="container content">
+    <section id="view-dashboard"><div class="section-title" id="news"><div><span class="eyebrow">LATEST STORIES</span><h2>ข่าวสารล่าสุด</h2><p>รวมข่าวสารและข้อมูลอัปเดตในที่เดียว</p></div><button type="button" class="refresh" onclick="fetchNews()"><i id="refresh-icon" class="fa-solid fa-rotate-right"></i> รีเฟรช</button></div>
+      <div id="dashboard-loading" class="state"><i class="fa-solid fa-circle-notch fa-spin"></i>กำลังโหลดข่าวสาร...</div>
+      <div id="dashboard-empty" class="state hidden"><i class="fa-regular fa-newspaper"></i>ยังไม่มีข่าวสารในขณะนี้</div>
+      <div id="news-grid" class="news-grid"></div>
+    </section>
+    <section id="view-admin" class="form-wrap hidden"><div class="panel"><span class="eyebrow" style="color:var(--accent)">PUBLISH NEWS</span><h2>โพสต์ข่าวสารใหม่</h2><p class="panel-intro">กรอกข้อมูลข่าวและลิงก์ต้นฉบับ</p>
+      <form id="news-form" onsubmit="submitNews(event)">
+        <div class="field"><label for="input-title">หัวข้อข่าว *</label><input id="input-title" required placeholder="ระบุหัวข้อข่าว"></div>
+        <div class="field"><label for="input-image">URL รูปภาพประกอบ *</label><input id="input-image" type="url" required placeholder="https://example.com/image.jpg"></div>
+        <div class="field"><label for="input-detail">รายละเอียดข่าว *</label><textarea id="input-detail" rows="6" required placeholder="ระบุรายละเอียดข่าวสาร"></textarea></div>
+        <div class="field"><label for="input-source">ลิงก์ข่าวต้นฉบับ *</label><input id="input-source" type="url" required placeholder="https://example.com/article"></div>
+        <div class="author-note">ผู้โพสต์: <strong>Udsanee Pakdeetrakulwong</strong></div>
+        <button id="btn-submit" class="primary submit" type="submit">บันทึกข่าวสาร</button>
+      </form></div></section>
+  </main>
+  <footer class="footer"><div class="container footer-inner"><span>© 2026 Udsanee Pakdeetrakulwong</span><span>ข่าวสารและประกาศ</span></div></footer>
+  <div id="news-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-panel"><div class="modal-top"><div><span>ข่าวสาร / NEWS</span><a id="modal-source-header" target="_blank" rel="noopener noreferrer" href="#">ลิงก์ข่าวต้นฉบับ</a><a id="modal-source-url" target="_blank" rel="noopener noreferrer" href="#"></a></div><button class="close" onclick="closeModal()" aria-label="ปิด"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body"><img id="modal-image" src="" alt="ภาพประกอบข่าว"><div class="modal-meta"><span><i class="fa-solid fa-user"></i> <span id="modal-author"></span></span><span><i class="fa-regular fa-clock"></i> <span id="modal-time"></span></span></div><h3 id="modal-title"></h3><p id="modal-detail"></p></div><div class="modal-bottom"><a id="modal-source-btn" class="primary" href="#" target="_blank" rel="noopener noreferrer">อ่านข่าวต้นฉบับ <i class="fa-solid fa-arrow-up-right-from-square"></i></a><button onclick="closeModal()">ปิดหน้าต่าง</button></div></div></div>
+  <script>
+// =========================================================
         // 1. กำหนดค่า API_URL จาก Google Apps Script Web App
         // =========================================================
         // const API_URL = "วาง_WEB_APP_URL_ตรงนี้";
@@ -223,6 +112,17 @@
             fetchNews();
         });
 
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+        }
+        function safeUrl(value) {
+            try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : ''; }
+            catch { return ''; }
+        }
+        function displayAuthor(value) {
+            return !value || value === 'Suksawat Saelim' ? 'Udsanee Pakdeetrakulwong' : value;
+        }
 
         // Switch Tab Views (Dashboard <-> Admin)
         function switchView(view) {
@@ -249,14 +149,14 @@
                 dashboardSec.classList.remove('hidden');
                 adminSec.classList.add('hidden');
                 
-                btnDashboard.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 bg-blue-50 text-blue-600";
-                btnAdmin.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 text-slate-600 hover:bg-slate-100";
+                btnDashboard.classList.add('active');
+                btnAdmin.classList.remove('active');
             } else {
                 dashboardSec.classList.add('hidden');
                 adminSec.classList.remove('hidden');
 
-                btnAdmin.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 bg-blue-50 text-blue-600";
-                btnDashboard.className = "px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 text-slate-600 hover:bg-slate-100";
+                btnAdmin.classList.add('active');
+                btnDashboard.classList.remove('active');
             }
         }
 
@@ -289,7 +189,7 @@
 
                 if (Array.isArray(data) && data.length > 0) {
                     // เรียงลำดับเอาข่าวล่าสุดไว้บนสุด (Reverse Array)
-                    allNewsData = data.reverse();
+                    allNewsData = [...data].reverse();
                     renderNewsCards(allNewsData);
                 } else {
                     empty.classList.remove('hidden');
@@ -309,53 +209,25 @@
 
             newsList.forEach((item, index) => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl transition duration-300 flex flex-col cursor-pointer group";
+                card.className = 'news-card';
                 card.onclick = () => openModal(index);
 
                 // ตรวจสอบรูปภาพ ยามรูปเสีย
-                const imageUrl = item.image_url || 'https://via.placeholder.com/600x400?text=No+Image';
+                const imageUrl = safeUrl(item.image_url) || '';
+                const title = escapeHtml(item.title);
+                const detail = escapeHtml(item.detail);
+                const author = escapeHtml(displayAuthor(item.author));
+                const timestamp = escapeHtml(item.timestamp || 'ไม่ระบุเวลา');
 
                 card.innerHTML = `
-                    <!-- บล็อกรูปภาพ (นำวันเวลาออกแล้ว) -->
-                    <div class="relative overflow-hidden h-48 bg-slate-100">
-                        <img src="${imageUrl}" alt="${item.title}" 
-                            class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                            onerror="this.src='https://via.placeholder.com/600x400?text=Image+Error'">
-                    </div>
-
-                    <!-- บล็อกเนื้อหาข่าว -->
-                    <div class="p-5 flex-grow flex flex-col justify-between">
-                        <div>
-                            <!-- แถบแสดงชื่อผู้โพสต์ และ วันเวลาที่โพสต์ -->
-                            <div class="flex items-center justify-between text-xs mb-2.5">
-                                <div class="flex items-center gap-1.5 text-blue-600 font-medium">
-                                    <i class="fa-solid fa-circle-user"></i>
-                                    <span>${item.author || 'Suksawat Saelim'}</span>
-                                </div>
-                                <div class="flex items-center gap-1 text-slate-400">
-                                    <i class="fa-regular fa-clock"></i>
-                                    <span>${item.timestamp || 'ไม่ระบุเวลา'}</span>
-                                </div>
-                            </div>
-
-                            <!-- หัวข้อข่าว -->
-                            <h3 class="font-bold text-slate-800 text-base mb-2 group-hover:text-blue-600 transition line-clamp-2">
-                                ${item.title}
-                            </h3>
-
-                            <!-- รายละเอียดข่าวแบบย่อ -->
-                            <p class="text-slate-500 text-xs line-clamp-3 leading-relaxed mb-4">
-                                ${item.detail}
-                            </p>
-                        </div>
-
-                        <!-- ส่วนท้ายของการ์ด -->
-                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                            <span class="text-xs text-blue-600 font-medium group-hover:underline">อ่านรายละเอียดเพิ่มเติม</span>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:translate-x-1 transition"></i>
-                        </div>
-                    </div>
-                `;
+                    <div class="card-image">${imageUrl ? `<img src="${escapeHtml(imageUrl)}" alt="" loading="lazy">` : '<span class="image-placeholder"><i class="fa-regular fa-newspaper"></i></span>'}</div>
+                    <div class="card-body">
+                        <span class="card-tag">ข่าวสาร / NEWS</span>
+                        <h3>${title}</h3>
+                        <p class="excerpt">${detail}</p>
+                        <div class="card-meta"><span><i class="fa-regular fa-clock"></i> ${timestamp}</span><span>${author}</span></div>
+                        <span class="read-more">อ่านรายละเอียด <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                    </div>`;
                 grid.appendChild(card);
             });
         }
@@ -389,7 +261,7 @@
                     redirect: 'follow' // เพิ่มบรรทัดนี้เพื่อรองรับการ Redirect ของ Google
                 });
 
-                alert("บันทึกข่าวเรียบร้อยแล้ว!");
+                alert("ส่งข้อมูลข่าวแล้ว กรุณาตรวจสอบรายการที่แสดงอีกครั้ง");
                 document.getElementById('news-form').reset();
                 switchView('dashboard');
                 fetchNews();
@@ -410,13 +282,15 @@
             const item = allNewsData[index];
             if (!item) return;
 
-            document.getElementById('modal-image').src = item.image_url || 'https://via.placeholder.com/600x400?text=No+Image';
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = safeUrl(item.image_url) || '';
+            modalImage.hidden = !safeUrl(item.image_url);
             document.getElementById('modal-title').textContent = item.title;
             document.getElementById('modal-detail').textContent = item.detail;
-            document.getElementById('modal-author').textContent = item.author || 'Suksawat Saelim';
+            document.getElementById('modal-author').textContent = displayAuthor(item.author);
             document.getElementById('modal-time').textContent = item.timestamp || 'ไม่ระบุเวลา';
 
-            const sourceLink = item.source_link || '#';
+            const sourceLink = safeUrl(item.source_link) || '#';
 
             // 1. อัปเดตลิงก์หัวข้อใน Header
             document.getElementById('modal-source-header').href = sourceLink;
@@ -442,6 +316,7 @@
         document.getElementById('news-modal').addEventListener('click', (e) => {
             if (e.target.id === 'news-modal') closeModal();
         });
-    </script>
+    
+  </script>
 </body>
 </html>
